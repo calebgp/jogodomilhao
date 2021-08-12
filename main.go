@@ -8,7 +8,17 @@ import (
 	"os"
 )
 
+type Pergunta struct {
+	Questao  string
+	Op1      string
+	Op2      string
+	Op3      string
+	Op4      string
+	Gabarito string
+}
+
 var fileScanner *bufio.Scanner
+var perguntas []Pergunta
 
 func proximaLinha() string {
 	fileScanner.Scan()
@@ -16,12 +26,25 @@ func proximaLinha() string {
 }
 
 func main() {
+	rand.Seed(1000)
 	stdin := bufio.NewReader(os.Stdin)
 	file, err := os.Open("perguntas.txt")
 	if err != nil {
 		log.Fatalf("Error when opening file: %s", err)
 	}
 	fileScanner = bufio.NewScanner(file)
+
+	for fileScanner.Scan() {
+		pergunta := Pergunta{
+			Questao:  proximaLinha(),
+			Op1:      proximaLinha(),
+			Op2:      proximaLinha(),
+			Op3:      proximaLinha(),
+			Op4:      proximaLinha(),
+			Gabarito: proximaLinha(),
+		}
+		perguntas = append(perguntas, pergunta)
+	}
 
 	premiacoes := [11]int{500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 200000, 500000, 1000000}
 	fmt.Printf("Seja bem vindo ao Jogo do Calebão!\n")
@@ -36,26 +59,20 @@ func main() {
 		comecou = false
 	}
 	if comecou == true {
-		var pergunta string
-		var opcao1, opcao2, opcao3, opcao4, gabarito string
 		premio := 0
 		for {
 			var comando string
 			fmt.Scanf("%s", &comando)
 			for comando != "Q" {
 				fmt.Printf("Valendo R$ %d!\n", premiacoes[premio])
-				pergunta = proximaLinha()
-				opcao1 = proximaLinha()
-				opcao2 = proximaLinha()
-				opcao3 = proximaLinha()
-				opcao4 = proximaLinha()
-				gabarito = proximaLinha()
-				proximaLinha()
-				fmt.Printf("%s\n\n", pergunta)
-				fmt.Printf("1 - %s\n", opcao1)
-				fmt.Printf("2 - %s\n", opcao2)
-				fmt.Printf("3 - %s\n", opcao3)
-				fmt.Printf("4 - %s\n", opcao4)
+
+				pergunta := perguntas[rand.Intn(len(perguntas)-1)]
+
+				fmt.Printf("%s\n\n", pergunta.Questao)
+				fmt.Printf("1 - %s\n", pergunta.Op1)
+				fmt.Printf("2 - %s\n", pergunta.Op2)
+				fmt.Printf("3 - %s\n", pergunta.Op3)
+				fmt.Printf("4 - %s\n", pergunta.Op4)
 				for {
 					_, err := fmt.Scanf("%s\n", &comando)
 					if err == nil {
@@ -65,7 +82,6 @@ func main() {
 					stdin.ReadString('\n')
 					fmt.Println("Sorry, invalid input. Please enter an integer: ")
 				}
-
 				if comando == "C" {
 					fmt.Printf("Escolha uma carta (número de 1 a 4)\n")
 					fmt.Scanf("%s", &comando)
@@ -74,7 +90,11 @@ func main() {
 				if comando == "U" {
 
 				}
-				if comando != gabarito {
+				if comando > "4" || comando < "0" {
+					fmt.Printf("Resposta Inválida, Digite outro número por favor\n")
+					fmt.Scanf("%s", &comando)
+				}
+				if comando != pergunta.Gabarito {
 					comando = "Q"
 					fmt.Printf("Game Over!\n")
 					if premio >= 2 {
@@ -92,6 +112,7 @@ func main() {
 					fmt.Printf("Parabéns você é o grande vencedor!\n")
 					break
 				}
+
 			}
 		}
 	}
