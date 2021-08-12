@@ -1,3 +1,4 @@
+
 Onde foi criado o chuveiro elétrico?
 Brasil
 Suiça
@@ -80,21 +81,18 @@ Yuri Gagarin
 A cadela Laika
 Neil Armstrong
 Marcos Pontes
-Buzz Aldrin
 1
 
 Qual a montanha mais alta do mundo?
 Mauna Kea
 Dhaulagiri
-Monte Chimborazo
 Monte Everest
 Pico da Neblina
-4
+3
 
 Onde se localiza Machu Picchu?
 Colômbia
 Peru
-China
 Bolívia
 Índia
 2
@@ -104,7 +102,7 @@ Butão
 Portugal
 Itália
 México
-2
+3
 
 Quem inventou a lâmpada?
 Graham Bell
@@ -153,4 +151,39 @@ As partes do mundo unidas pelo Olimpismo.
 As argolas da ginástica artística.
 Cinco tipos de esporte: de rede, de campo, de combate, de precisão, de invasão.
 Cinco deuses do Olimpo: Zeus, Atena, Apolo, Dionísio e Hermes.
+1
+
+Qual o nome do maior oceano do mundo?
+Oceano Atlântico
+Oceano Pacífico
+Oceano Glacial Ártico
+Oceano Antártico
+2
+
+Onde está localizada a Casa Branca nos Estados Unidos?
+California
+Nova York
+Washinton DC
+Texas
+3
+
+Qual o filme com maior bilheteria de todos?
+Avatar
+Vingadores Guerra Infinita
+Vingadores Ultimato
+Pantera Negra
+3
+
+Quantas cores você pode ver no arco íris?
+8
+5
+9
+7
+4
+
+Qual atleta é conhecido como "Rei do Futebol"?
+Pelé
+Cristiano Ronaldo
+Neymar
+Lionel Messi
 1
