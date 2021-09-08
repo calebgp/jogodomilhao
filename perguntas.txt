@@ -51,7 +51,7 @@ A Mitologia
 Quais os planetas do sistema solar?
 Terra, Vênus, Saturno, Urano, Júpiter, Marte, Netuno, Mercúrio
 Júpiter, Marte, Mercúrio, Netuno, Plutão, Saturno, Terra, Urano, Vênus
-Júpiter, Marte, Mercúrio, Netuno, Plutão, Saturno, Sol, Terra, Urano, Vênus
+Júpiter, Marte, Mercúrio, Netuno, Saturno, Sol, Terra, Urano, Vênus
 Terra, Vênus, Saturno, Júpiter, Marte, Netuno, Mercúrio
 1
 
@@ -186,4 +186,74 @@ Pelé
 Cristiano Ronaldo
 Neymar
 Lionel Messi
+1
+
+Qual a personagem mais famosa de Maurício de Sousa?
+Mônica
+Smurfette
+Magali
+Menino Maluquinho
+1
+
+Que cidade brasileira é conhecida por chover todos os dias quase à mesma hora?
+São Paulo
+Joinville
+Belém
+Natal
+3
+
+Qual o nome popular do cloreto de sódio?
+Vinagre
+Cloro
+Fermento
+Sal de cozinha
+4
+
+Que animal põe o maior ovo?
+Avestruz
+Tartaruga-gigante
+Galinha
+Pavão
+1
+
+Qual a especialidade do otorrinolaringologista?
+Tratamento das doenças infantis.
+Tratamento das doenças da pele.
+Tratamento das doenças dos olhos.
+Tratamento das doenças relacionadas a nariz, ouvido e garganta.
+4
+
+Qual a nacionalidade de Napoleão Bonaparte?
+Francesa
+Brasileira
+Mexicana
+Japonesa
+1
+
+Depois do futebol, qual o esporte mais popular no Brasil?
+Esqui
+Vôlei
+Golfe
+Esgrima
+2
+
+Que grande evento histórico aconteceu em 1822 no Brasil?
+Descobrimento do Brasil
+Ditadura Militar
+Construção de Brasilia
+Independência do Brasil
+4
+
+O que comemora no feriado do dia 21 de abril no Brasil?
+Natal
+Tiradentes
+Independência do Brasil
+Nossa Senhora Aparecida
+2
+
+Em que conto de fadas uma princesa adormece com um feitiço e só acorda com o beijo de um príncipe?
+A Bela Adormecida
+João e Maria
+Chapeuzinho Vermelho
+Os três porquinhos
 1
