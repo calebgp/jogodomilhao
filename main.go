@@ -9,20 +9,11 @@ import (
 	"time"
 )
 
-type Pergunta struct {
-	Questao  string
-	Op1      string
-	Op2      string
-	Op3      string
-	Op4      string
-	Gabarito string
-}
-
 var fileScanner *bufio.Scanner
-var perguntas []Pergunta
-var perguntasVisitadas []int
+var questions []Question
+var visitedQuestions []int
 
-func proximaLinha() string {
+func nextLine() string {
 	fileScanner.Scan()
 	return fileScanner.Text()
 }
@@ -37,10 +28,11 @@ func contains(s []int, e int) bool {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+
+	var r = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	stdin := bufio.NewReader(os.Stdin)
-	file, err := os.Open("perguntas.txt")
+	file, err := os.Open("questions.txt")
 
 	if err != nil {
 		log.Fatalf("Error when opening file: %s", err)
@@ -48,19 +40,19 @@ func main() {
 
 	fileScanner = bufio.NewScanner(file)
 
-	perguntasVisitadas = []int{}
+	visitedQuestions = []int{}
 
 	for fileScanner.Scan() {
-		pergunta := Pergunta{
-			Questao:  proximaLinha(),
-			Op1:      proximaLinha(),
-			Op2:      proximaLinha(),
-			Op3:      proximaLinha(),
-			Op4:      proximaLinha(),
-			Gabarito: proximaLinha(),
+		pergunta := Question{
+			Question:    nextLine(),
+			Op1:         nextLine(),
+			Op2:         nextLine(),
+			Op3:         nextLine(),
+			Op4:         nextLine(),
+			RightAnswer: nextLine(),
 		}
 
-		perguntas = append(perguntas, pergunta)
+		questions = append(questions, pergunta)
 	}
 
 	premiacoes := [11]int{500, 1000, 2500, 5000, 10000, 15000, 25000, 50000, 100000, 500000, 10000000}
@@ -71,7 +63,7 @@ func main() {
 	var comecou bool
 
 	fmt.Scanf("%s", &comecar)
-	fmt.Printf("O jogo é composto por 11 perguntas se acertar todas você leva para casa o incrivel premio de 1 milhao de reais\nAs perguntas vão vir na formatação a seguir: \n Pergunta\nOpção 1\nOpção 2\nOPção 3\nOpção 4\n")
+	fmt.Printf("O jogo é composto por 11 perguntas se acertar todas você leva para casa o incrivel premio de 1 milhao de reais\nAs questions vão vir na formatação a seguir: \nEnunciado da Questão\nOpção 1\nOpção 2\nOPção 3\nOpção 4\n")
 	if comecar == "1" {
 		comecou = true
 	} else {
@@ -96,25 +88,25 @@ func main() {
 				for {
 					// fmt.Printf(".\n")
 
-					numeroPergunta = rand.Intn(len(perguntas) - 1)
+					numeroPergunta = r.Intn(len(questions) - 1)
 
-					// fmt.Printf("%v\n", contains(perguntasVisitadas, numeroPergunta))
-					// fmt.Printf("%v\n", perguntasVisitadas)
+					// fmt.Printf("%v\n", contains(visitedQuestions, numeroPergunta))
+					// fmt.Printf("%v\n", visitedQuestions)
 					// fmt.Printf("%v\n", numeroPergunta)
-					// fmt.Printf("%v\n", len(perguntas))
+					// fmt.Printf("%v\n", len(questions))
 
-					if !contains(perguntasVisitadas, numeroPergunta) {
+					if !contains(visitedQuestions, numeroPergunta) {
 						break
 					}
 
-					if len(perguntasVisitadas) == len(perguntas) {
+					if len(visitedQuestions) == len(questions) {
 						fmt.Printf("Parabéns você zerou o jogo!!!")
 						return
 					}
 				}
 
-				perguntasVisitadas = append(perguntasVisitadas, numeroPergunta)
-				pergunta := perguntas[numeroPergunta]
+				visitedQuestions = append(visitedQuestions, numeroPergunta)
+				pergunta := questions[numeroPergunta]
 
 				repetir := true
 				cartas := 0
@@ -122,29 +114,29 @@ func main() {
 				for repetir {
 					repetir = false
 
-					fmt.Printf("%s\n\n", pergunta.Questao)
+					fmt.Printf("%s\n\n", pergunta.Question)
 
-					if cartas == 0 || "1" == pergunta.Gabarito {
+					if cartas == 0 || "1" == pergunta.RightAnswer {
 						fmt.Printf("1 - %s\n", pergunta.Op1)
-					} else if "1" != pergunta.Gabarito {
+					} else if "1" != pergunta.RightAnswer {
 						fmt.Printf("\n")
 						cartas--
 					}
-					if cartas == 0 || "2" == pergunta.Gabarito {
+					if cartas == 0 || "2" == pergunta.RightAnswer {
 						fmt.Printf("2 - %s\n", pergunta.Op2)
-					} else if "2" != pergunta.Gabarito {
+					} else if "2" != pergunta.RightAnswer {
 						fmt.Printf("\n")
 						cartas--
 					}
-					if cartas == 0 || "3" == pergunta.Gabarito {
+					if cartas == 0 || "3" == pergunta.RightAnswer {
 						fmt.Printf("3 - %s\n", pergunta.Op3)
-					} else if "3" != pergunta.Gabarito {
+					} else if "3" != pergunta.RightAnswer {
 						fmt.Printf("\n")
 						cartas--
 					}
-					if cartas == 0 || "4" == pergunta.Gabarito {
+					if cartas == 0 || "4" == pergunta.RightAnswer {
 						fmt.Printf("4 - %s\n", pergunta.Op4)
-					} else if "4" != pergunta.Gabarito {
+					} else if "4" != pergunta.RightAnswer {
 						fmt.Printf("\n")
 						cartas--
 					}
@@ -179,17 +171,7 @@ func main() {
 					}
 					if comando == "U" || comando == "u" && universitariosusados < 2 {
 						uni1 := rand.Intn(90) + 10
-						// resto := 100 - uni1
-						// uni2 := rand.Intn(resto)
-						// resto = resto - uni2
-						// uni3 := rand.Intn(resto)
-						// resto = resto - uni3
-						// uni4 := resto
-
-						fmt.Printf("%d%%, dos universitarios acham que é %s\n", uni1, pergunta.Gabarito)
-						// fmt.Printf("%d %, dos universitarios acham que é %d\n", uni2)
-						// fmt.Printf("%d %, dos universitarios acham que é %d\n", uni3)
-						// fmt.Printf("%d %, dos universitarios acham que é %d\n", uni4)
+						fmt.Printf("%d%%, dos universitarios acham que é %s\n", uni1, pergunta.RightAnswer)
 						universitariosusados++
 					}
 					if comando == "P" || comando == "p" && pularusados < 2 {
@@ -202,7 +184,7 @@ func main() {
 						fmt.Scanf("%s", &comando)
 					}
 
-					if comando != pergunta.Gabarito {
+					if comando != pergunta.RightAnswer {
 						comando = "Q"
 
 						fmt.Printf("Game Over!\n")
